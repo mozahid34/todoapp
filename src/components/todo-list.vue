@@ -3,13 +3,16 @@
         <h1>Your ToDo List:</h1>
         <input type="text" name="todo" id="todo" placeholder="What's need to be done?" v-model="newTodo" @keydown.enter="addTodo" >
         
-        <ul v-for="(todo,index) in todos" :key="todo.id" class="todo-item" >
-            <div class="todo-item"  >
-                {{ todo.title }} <span class="remove-item" @click="removeTodo(index)" > &times; </span> 
+        <ul v-for="(todo,index) in todos" :key="todo.id" class="todo-items" >
+            <div v-if="!todo.editing" class="todo-item"  >
+                <div @dblclick="editTodo(todo)" >
+                {{ todo.title }} 
+                </div>
+                <span class="remove-item" @click="removeTodo(index)" > &times; </span> 
             </div>
 
-            <div >
-                <input v-model="todo.title" class="edit" @dblclick="inputtodo" type="text" >
+            <div v-else >
+                <input v-model="todo.title" class="edit" @dblclick="doneEditing(todo)" @keypress.enter="doneEditing(todo)" type="text" >
             </div>
                
           
@@ -42,6 +45,7 @@ export default {
                     'id':0,
                     'title': 'Have to go',
                     'completed' : false,
+                    'editing': false,
                 },
                 
             ]
@@ -67,8 +71,13 @@ export default {
 
 
         },
-        editTodo() {
-            true
+        editTodo(todo) {
+            todo.editing = true
+            
+           
+        },
+        doneEditing(todo) {
+            todo.editing = false
         }
 
 
@@ -83,6 +92,12 @@ export default {
     }
     .remove-item {
         cursor: pointer;
+        margin-left: 150px;
+    }
+    .todo-item {
+        display: flex;
+        margin:auto;
+        justify-content: center;
     }
 
 </style>
