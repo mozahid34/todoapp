@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-  <img alt="Vue logo" class="logo" src="./assets/logo.png">
+  <img alt="Vue logo" class="logo" src="https://www.stock-app.info/media/wp-content/uploads/2022/06/ToDo-%E3%83%AA%E3%82%B9%E3%83%88-%E7%B6%9A%E3%81%8B%E3%81%AA%E3%81%84.jpg">
 
   <todo-list></todo-list>
  
@@ -48,6 +48,6 @@ export default {
 .logo {
   display: block;
   margin: auto;
-  width: 75px;
+  width: 150px;
 }
 </style>
